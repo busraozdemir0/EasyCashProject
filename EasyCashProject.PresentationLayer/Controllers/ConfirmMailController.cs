@@ -33,7 +33,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
                 // Email confirmed kısmı update edip True'ya dondurulecek
                 user.EmailConfirmed = true;
                 await _userManager.UpdateAsync(user);
-                return RedirectToAction("Index", "MyProfile");
+                return RedirectToAction("Index", "Login");
             }
             return View();
         }
