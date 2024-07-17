@@ -14,6 +14,7 @@ namespace EasyCashProject.EntityLayer.Concrete
         public string District { get; set; }
         public string City { get; set; }
         public string ImageUrl { get; set; }
+        public int ConfirmCode { get; set; } // Maile gonderilecek olan onay kodu
         public List<CustomerAccount> CustomerAccounts { get; set; }
     }
 }
