@@ -32,7 +32,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
                 var user = await _userManager.FindByNameAsync(loginViewModel.UserName);
                 if (user.EmailConfirmed == true) // Eger giris yapmak isteyen kullanicinin EmailConfirmed alani true ise basarili sekilde giris yapilmis olunacak
                 {
-                    return RedirectToAction("Index", "MyProfile");
+                    return RedirectToAction("Index", "MyAccounts");
                 }
             }
             return View();
