@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EasyCashProject.EntityLayer.Concrete
 {
+    // Musterinin hesap bilgilerini icerecek tablo
     public class CustomerAccount
     {
         public int CustomerAccountID { get; set; }
@@ -15,6 +16,8 @@ namespace EasyCashProject.EntityLayer.Concrete
         public string BankBranch { get; set; }  // Banka subesi
         public int AppUserID { get; set; } // Bu hesap kime ait?
         public AppUser AppUser { get; set; }
+
+        // Para transferi icin iliskiler
         public List<CustomerAccountProcess> CustomerSender { get; set; }
         public List<CustomerAccountProcess> CustomerReceiver { get; set; }
     }
