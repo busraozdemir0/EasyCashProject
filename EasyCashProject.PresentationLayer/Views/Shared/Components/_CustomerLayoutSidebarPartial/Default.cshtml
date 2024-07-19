@@ -35,7 +35,7 @@
                         <a><i class="fa fa-edit"></i> Hesap İşlemleri <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a asp-controller="SendMoney" asp-action="Index">Para Transferi</a></li>
-                            <li><a href="#">Son İşlemlerim</a></li>
+                            <li><a asp-controller="MyLastProcess" asp-action="Index">Son İşlemlerim</a></li>
                             <li><a href="#">QR ile Para Gönder</a></li>
                             <li><a href="#">Iban Bilgisi Paylaş</a></li>
                             <li><a href="#">Hesaplarım Arası Transfer</a></li>
@@ -58,10 +58,10 @@
                     <li>
                         <a><i class="fa fa-car"></i> Para Transferleri <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="#">TL Transfer</a></li>
-                            <li><a href="#">Dolar Transfer</a></li>
-                            <li><a href="#">Euro Transfer</a></li>
-                            <li><a href="#">Diğer Transferler</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="TL">TL Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="USD">Dolar Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="EUR">Euro Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="Other">Diğer Transferler</a></li>
                         </ul>
                     </li>
                     <li>
