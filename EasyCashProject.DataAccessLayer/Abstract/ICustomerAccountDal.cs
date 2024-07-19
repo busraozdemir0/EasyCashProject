@@ -9,5 +9,6 @@ namespace EasyCashProject.DataAccessLayer.Abstract
 {
     public interface ICustomerAccountDal : IGenericDal<CustomerAccount>
     {
+        List<CustomerAccount> GetCustomerAccountsList(int id); // Sisteme login olan kullanicinin tum hesaplarini listeleyecek
     }
 }
