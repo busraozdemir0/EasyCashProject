@@ -37,11 +37,16 @@
                                     <div class="x_content bs-example-popovers">
                                         @foreach (var item in Model)
                                         {
-                                            <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">Iban Kopyala</span>
-                                                </button>
-                                                <strong>Hesap Döviz Türü: @item.CustomerAccountCurrency</strong> Banka: @item.BankBranch - Hesap No: @item.CustomerAccountNumber
+                                            <div class="alert alert-success alert-dismissible fade in" role="alert" style="font-size:18px;">
+                                                <strong style="font-size:18px;">Hesap Döviz Türü: @item.CustomerAccountCurrency</strong>
+                                                <br />
+                                                Banka: @item.BankBranch - Hesap No: @item.CustomerAccountNumber
+                                                <div class="input-group">
+                                                    <input type="text" id="iban-@item.CustomerAccountNumber" class="form-control" value="@item.CustomerAccountNumber" readonly>
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" onclick="copyIban('@item.CustomerAccountNumber')">Iban Kopyala</button>
+                                                    </span>
+                                                </div>
                                             </div>
                                         }
 
@@ -55,3 +60,18 @@
         </div>
     </div>
 </div>
+
+<script>
+    function copyIban(accountNumber) {
+        // IBAN input elementini sec
+        var ibanInput = document.getElementById('iban-' + accountNumber);
+
+        // Input alanindaki metni sec ve kopyala
+        ibanInput.select();
+        ibanInput.setSelectionRange(0, 99999); // Mobil cihazlar icin
+
+        document.execCommand('copy'); // Kopyalama komutunu calistir
+
+        alert('IBAN kopyalandı: ' + ibanInput.value); // Kopyalandigini gostermek icin bir mesaj goruntule
+    }
+</script>

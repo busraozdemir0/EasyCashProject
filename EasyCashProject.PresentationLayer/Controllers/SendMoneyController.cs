@@ -43,7 +43,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
                 .Select(z => z.CustomerAccountID).FirstOrDefault();
 
             var values = new CustomerAccountProcess();
-            values.ProcessDate= Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            values.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             values.SenderID = senderAccountNumberID;
             values.ProcessType = "Havale";
             values.ReceiverID = receiverAccountNumberID;
@@ -52,7 +52,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
 
             _customerAccountProcessService.TInsert(values);
 
-            return RedirectToAction("Index","Dashboard");
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }
