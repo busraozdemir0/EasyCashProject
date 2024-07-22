@@ -203,12 +203,20 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.17" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+    <PackageReference Include="QRCoder" Version="1.6.0" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EasyCashProject.BusinessLayer\EasyCashProject.BusinessLayer.csproj" />
     <ProjectReference Include="..\EasyCashProject.DataAccessLayer\EasyCashProject.DataAccessLayer.csproj" />
     <ProjectReference Include="..\EasyCashProject.EntityLayer\EasyCashProject.EntityLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>C:\Users\busra\Desktop\QRCoder.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
