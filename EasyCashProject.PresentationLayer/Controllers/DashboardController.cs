@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace EasyCashProject.PresentationLayer.Controllers
 {
-    public class ExchangeController : Controller
+    public class DashboardController : Controller
     {
         public async Task<IActionResult> Index()
         {

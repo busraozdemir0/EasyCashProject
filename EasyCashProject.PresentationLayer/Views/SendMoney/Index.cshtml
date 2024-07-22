@@ -41,14 +41,24 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <p>@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
                         <form class="form-horizontal form-label-left" method="post" novalidate>
 
                             <p>
                                 Lütfen havale göndermek istediğiniz kişinin bilgilerini eksiksiz giriniz.
                             </p>
-                            <span class="section">Hesap Bilgileri</span>
 
+                            <input id="name" class="form-control col-md-7 col-xs-12" asp-for="CustomerAccountCurrency" required="required" type="hidden" value="@ViewBag.currency">
+
+                            <span class="section">Hesap Bilgileri</span>
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">
                                     Hesap Numarası <span class="required">*</span>
