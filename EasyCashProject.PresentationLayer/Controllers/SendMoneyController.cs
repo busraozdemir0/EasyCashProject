@@ -50,7 +50,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
             if (senderAccountNumberID != 0 & receiverAccountNumberID != 0)
             {
                 var values = new CustomerAccountProcess();
-                values.ProcessDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+                values.ProcessDate = Convert.ToDateTime(DateTime.Now);
                 values.SenderID = senderAccountNumberID;
                 values.ProcessType = "Havale";
                 values.ReceiverID = receiverAccountNumberID;
@@ -64,10 +64,21 @@ namespace EasyCashProject.PresentationLayer.Controllers
                 CustomerAccount sender = context.CustomerAccounts.Find(senderAccountNumberID); // Para gonderen kisinin ID'si
                 sender.CustomerAccountBalance -= values.Amount; // Para gonderen kisinin hesabindan, gonderilen miktar kadar azaltma islemi
 
-                _customerAccountService.TUpdate(receiver);
-                _customerAccountService.TUpdate(sender);
+                // Eger para gonderecek kisinin hesap bakiyesi 0 ise ya da para gondermek istedigi miktardan daha az parasi varsa hata donecek
+                if (sender.CustomerAccountBalance == 0 || sender.CustomerAccountBalance < values.Amount)
+                {
+                    ModelState.AddModelError(string.Empty, "Hesabınızda yeteri kadar para bulunmamaktadır!");
+                    return View(sendMoneyForCustomerAccountProcessDto);
+                }
 
-                _customerAccountProcessService.TInsert(values); // Hesap islemleri tablosuna bilgileri kaydetme islemi
+                // Bakiyesinde yeterli miktarda para varsa bakiye guncelleme ve para transferi islemleri gerceklestiriliyor.
+                else
+                {
+                    _customerAccountService.TUpdate(receiver);
+                    _customerAccountService.TUpdate(sender);
+
+                    _customerAccountProcessService.TInsert(values); // Hesap islemleri tablosuna bilgileri kaydetme islemi
+                }
             }
             else if (senderAccountNumberID == 0)
             {

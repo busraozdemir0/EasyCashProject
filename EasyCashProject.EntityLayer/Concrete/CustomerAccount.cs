@@ -10,10 +10,12 @@ namespace EasyCashProject.EntityLayer.Concrete
     public class CustomerAccount
     {
         public int CustomerAccountID { get; set; }
-        public string CustomerAccountNumber { get; set; }
+        public string CustomerAccountNumber { get; set; } // Musteri hesap numarasi (IBAN yerine kullanilmaktadir)
+        public int? CVC { get; set; } // Kart dogrulama kodu (3 haneli)
+        public string? ExpirationDate { get; set; } // Kartin son kullanim tarihi
         public string CustomerAccountCurrency { get; set; } // Hesabin Döviz bilgisi
-        public decimal CustomerAccountBalance { get; set; } // Hesap bakiyesi
-        public string BankBranch { get; set; }  // Banka subesi
+        public decimal CustomerAccountBalance { get; set; } = 0; // Hesap bakiyesi
+        public string? BankBranch { get; set; }  // Banka subesi
         public int AppUserID { get; set; } // Bu hesap kime ait?
         public AppUser AppUser { get; set; }
 

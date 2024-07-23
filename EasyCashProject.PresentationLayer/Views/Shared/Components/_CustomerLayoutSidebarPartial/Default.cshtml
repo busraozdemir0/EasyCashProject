@@ -44,11 +44,8 @@
                     <li>
                         <a><i class="fa fa-desktop"></i> Hesaplarım <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="general_elements.html">Tüm Hesaplarım</a></li>
-                            <li><a href="media_gallery.html">Yeni Hesap Aç</a></li>
-                            <li><a href="typography.html">Vadesiz Hesaplarım</a></li>
-                            <li><a href="icons.html">Vadeli Hesaplarım</a></li>
-                            <li><a href="glyphicons.html">Altın Hesaplarım</a></li>
+                            <li><a asp-controller="CustomerAccount" asp-action="Index">Tüm Hesaplarım</a></li>
+                            <li><a asp-controller="CustomerAccount" asp-action="CreateAccount">Yeni Hesap Aç</a></li>
                             <li><a href="widgets.html">Kredi Hesaplarım</a></li>
                             <li><a href="invoice.html">Dolar Hesaplarım</a></li>
                             <li><a href="inbox.html">Euro Hesaplarım</a></li>
@@ -105,7 +102,7 @@
                     <li>
                         <a asp-controller="MyAccounts" asp-action="Index"><i class="fa fa-cog"></i> Ayarlar </a>
                     </li>
-
+                    <li> <a asp-controller="Home" asp-action="Index"><i class="fa fa-arrow-left"></i> Ana Sayfa</a></li>
                     <li><a asp-controller="Login" asp-action="LogOut"><i class="fa fa-close"></i> Çıkış Yap</a></li>
                 </ul>
             </div>

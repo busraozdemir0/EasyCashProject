@@ -5,6 +5,8 @@ using EasyCashProject.DataAccessLayer.Concrete;
 using EasyCashProject.DataAccessLayer.EntityFramework;
 using EasyCashProject.EntityLayer.Concrete;
 using EasyCashProject.PresentationLayer.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,11 @@ builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<Context>()
     .AddErrorDescriber<CustomIdentityValidator>();
+
+//var assembly = Assembly.GetExecutingAssembly();
+//builder.Services.AddAutoMapper(assembly);
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<ICustomerAccountProcessDal, EfCustomerAccountProcessDal>();
 builder.Services.AddScoped<ICustomerAccountProcessService, CustomerAccountProcessManager>();

@@ -20,7 +20,6 @@ namespace EasyCashProject.PresentationLayer.Controllers
         {
             var value = TempData["Mail"];  // RegisterController tarafinda kayit olan kullanicinin mailini tasidik
             ViewBag.v = value;
-           // confirmMailViewModel.Mail = value.ToString();
             return View();
         }
 
