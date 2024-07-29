@@ -71,6 +71,14 @@
                         </ul>
                     </li>
                     <li>
+                        <a><i class="fa fa-clone"></i>Krediler <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a asp-controller="CreditCard" asp-action="CreditCartApplication">Kredi Kartı Başvurusu</a></li>
+                            <li><a href="fixed_sidebar.html">Kredi Hesaplarım</a></li>
+                            <li><a href="fixed_footer.html">Kredi Ödemeleri</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a><i class="fa fa-bar-chart-o"></i> Döviz ve Altın <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="chartjs.html">Döviz Kurları</a></li>
@@ -78,14 +86,7 @@
                             <li><a href="morisjs.html">Altın İşlemleri</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a><i class="fa fa-clone"></i>Krediler <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="fixed_sidebar.html">Kredi Hesaplarım</a></li>
-                            <li><a href="fixed_footer.html">Kredi Başvurusu</a></li>
-                            <li><a href="fixed_footer.html">Kredi Ödemeleri</a></li>
-                        </ul>
-                    </li>
+               
                 </ul>
             </div>
             <div class="menu_section">
@@ -94,8 +95,8 @@
                     <li>
                         <a><i class="fa fa-bug"></i> Kartlarım <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="e_commerce.html">Kredi Kartlarım</a></li>
-                            <li><a href="projects.html">Banka Kartlarım</a></li>
+                            <li><a asp-controller="CreditCard" asp-action="Index">Kredi Kartlarım</a></li>
+                            <li><a asp-controller="CustomerAccount" asp-action="Index">Banka Kartlarım</a></li>
                             <li><a href="project_detail.html">Sanal Kartlarım</a></li>
                         </ul>
                     </li>
@@ -114,7 +115,7 @@
             <a data-toggle="tooltip" data-placement="top" title="Ayarlar" asp-controller="MyAccounts" asp-action="Index">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+            <a data-toggle="tooltip" data-placement="top" title="Tam Ekran">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
             </a>
             <a data-toggle="tooltip" data-placement="top" title="Lock">

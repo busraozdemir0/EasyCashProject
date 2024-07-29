@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
 namespace EasyCashProject.PresentationLayer.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         public async Task<IActionResult> Index()
         {
-            // freecurrencyapi uzerinden doviz kurlarini cekme
+            // * freecurrencyapi uzerinden doviz kurlarini cekme *
             // Dolar'dan Turk lirasina cevirme
             //#region
             var client = new HttpClient();

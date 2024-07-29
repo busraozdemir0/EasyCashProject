@@ -16,5 +16,6 @@ namespace EasyCashProject.EntityLayer.Concrete
         public string ImageUrl { get; set; }
         public int ConfirmCode { get; set; } // Maile gonderilecek olan onay kodu
         public List<CustomerAccount> CustomerAccounts { get; set; }
+        public List<CreditCard> CreditCards { get; set; }
     }
 }

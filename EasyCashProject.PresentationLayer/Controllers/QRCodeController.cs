@@ -4,9 +4,11 @@ using SkiaSharp;
 using Microsoft.AspNetCore.Identity;
 using EasyCashProject.EntityLayer.Concrete;
 using EasyCashProject.DataAccessLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EasyCashProject.PresentationLayer.Controllers
 {
+    [Authorize]
     public class QRCodeController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -17,12 +19,12 @@ namespace EasyCashProject.PresentationLayer.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // Giris yapan kullanicinin Türk Lirasi hesabin,n IBAN bilgisine gore QR kod olusturma
+            // Giris yapan kullanicinin Türk Lirasi hesabinin IBAN bilgisine gore QR kod olusturma
             using var context = new Context();
             var loginUser = await _userManager.FindByNameAsync(User.Identity.Name);
             var customerAccountNumber = context.CustomerAccounts.Where
                 (x => x.AppUserID == loginUser.Id &
-                x.CustomerAccountCurrency == "Türk Lirası").Select(y => y.CustomerAccountNumber).FirstOrDefault();
+                x.CustomerAccountCurrency == "TL").Select(y => y.CustomerAccountNumber).FirstOrDefault();
             ViewBag.CustomerAccountNumber = customerAccountNumber;
             return View();
         }

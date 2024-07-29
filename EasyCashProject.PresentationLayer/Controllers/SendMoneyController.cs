@@ -2,6 +2,7 @@
 using EasyCashProject.DataAccessLayer.Concrete;
 using EasyCashProject.DtoLayer.Dtos.CustomerAccountProcessDtos;
 using EasyCashProject.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace EasyCashProject.PresentationLayer.Controllers
 {
+    [Authorize]
     public class SendMoneyController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

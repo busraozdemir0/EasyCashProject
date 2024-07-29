@@ -1,3 +1,4 @@
+using EasyCashProject.BusinessLayer;
 using EasyCashProject.BusinessLayer.Abstract;
 using EasyCashProject.BusinessLayer.Concrete;
 using EasyCashProject.DataAccessLayer.Abstract;
@@ -17,16 +18,16 @@ builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<Context>()
     .AddErrorDescriber<CustomIdentityValidator>();
 
-//var assembly = Assembly.GetExecutingAssembly();
-//builder.Services.AddAutoMapper(assembly);
-
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.LoadBusinessLayerExtension();
 
 builder.Services.AddScoped<ICustomerAccountProcessDal, EfCustomerAccountProcessDal>();
 builder.Services.AddScoped<ICustomerAccountProcessService, CustomerAccountProcessManager>();
 
 builder.Services.AddScoped<ICustomerAccountDal, EfCustomerAccountDal>();
 builder.Services.AddScoped<ICustomerAccountService, CustomerAccountManager>();
+
+builder.Services.AddScoped<ICreditCardDal, EfCreditCardDal>();
+builder.Services.AddScoped<ICreditCardService, CreditCardManager>();
 
 var app = builder.Build();
 
