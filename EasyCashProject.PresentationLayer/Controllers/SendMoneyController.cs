@@ -4,7 +4,9 @@ using EasyCashProject.DtoLayer.Dtos.CustomerAccountProcessDtos;
 using EasyCashProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace EasyCashProject.PresentationLayer.Controllers
 {
@@ -22,9 +24,24 @@ namespace EasyCashProject.PresentationLayer.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(string mycurrency)
+        public async Task<IActionResult> IndexAsync(string mycurrency)
         {
             ViewBag.currency = mycurrency;
+
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            
+            // Sisteme login olan kullanicinin bilgisi ve mycurrency bilgisi ile ilgili kullanicinin mycurrency'a ait tum hesaplari listelenir.
+            // - Ornegin; Dolar hesabindan 3 adet varsa ucu de selectbox icerisinde listelenir ve bizden birini secmemizi ister.
+            var userAccountsByMyCurrency = _customerAccountService.TGetCustomerAccountsListByMyCurrency(user.Id, mycurrency);
+
+            List<SelectListItem> accountValues = (from x in userAccountsByMyCurrency.ToList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.CustomerAccountNumber + " - " + x.BankBranch + " - " + x.CustomerAccountBalance,
+                                                   Value = x.CustomerAccountID.ToString()
+                                               }).ToList();
+            ViewBag.UserAccountValues = accountValues;
+
             return View();
         }
 
@@ -42,16 +59,11 @@ namespace EasyCashProject.PresentationLayer.Controllers
             var receiverAccountNumberID = context.CustomerAccounts.Where(x => x.CustomerAccountNumber == sendMoneyForCustomerAccountProcessDto.ReceiverAccountNumber)
                 .Select(y => y.CustomerAccountID).FirstOrDefault();
 
-            // Sisteme login olan kullaniciya gore CustomerAccount tablosundan ilgili kullanicidaki tanimli Türk Lirası hesabininin CustomerAccountID bilgisini cekiyoruz.
-            var senderAccountNumberID = context.CustomerAccounts.Where(x => x.AppUserID == user.Id)
-                .Where(y => y.CustomerAccountCurrency == sendMoneyForCustomerAccountProcessDto.CustomerAccountCurrency)
-                .Select(z => z.CustomerAccountID).FirstOrDefault();
-
-            if (senderAccountNumberID != 0 & receiverAccountNumberID != 0)
+            if (sendMoneyForCustomerAccountProcessDto.SenderID != 0 & receiverAccountNumberID != 0)
             {
                 var values = new CustomerAccountProcess();
                 values.ProcessDate = Convert.ToDateTime(DateTime.Now);
-                values.SenderID = senderAccountNumberID;
+                values.SenderID = sendMoneyForCustomerAccountProcessDto.SenderID;
                 values.ProcessType = "Havale";
                 values.ReceiverID = receiverAccountNumberID;
                 values.Amount = sendMoneyForCustomerAccountProcessDto.Amount;
@@ -61,7 +73,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
                 CustomerAccount receiver = context.CustomerAccounts.Find(receiverAccountNumberID); // Para gonderilecek kisinin ID'si
                 receiver.CustomerAccountBalance += values.Amount; // Para gonderilen kisinin hesabini, gonderilen miktar kadar arttirma islemi
 
-                CustomerAccount sender = context.CustomerAccounts.Find(senderAccountNumberID); // Para gonderen kisinin ID'si
+                CustomerAccount sender = context.CustomerAccounts.Find(sendMoneyForCustomerAccountProcessDto.SenderID); // Para gonderen kisinin ID'si
                 sender.CustomerAccountBalance -= values.Amount; // Para gonderen kisinin hesabindan, gonderilen miktar kadar azaltma islemi
 
                 // Eger para gonderecek kisinin hesap bakiyesi 0 ise ya da para gondermek istedigi miktardan daha az parasi varsa hata donecek
@@ -80,7 +92,7 @@ namespace EasyCashProject.PresentationLayer.Controllers
                     _customerAccountProcessService.TInsert(values); // Hesap islemleri tablosuna bilgileri kaydetme islemi
                 }
             }
-            else if (senderAccountNumberID == 0)
+            else if (sendMoneyForCustomerAccountProcessDto.SenderID == 0)
             {
                 ModelState.AddModelError(string.Empty, sendMoneyForCustomerAccountProcessDto.CustomerAccountCurrency + " hesabınız bulunmamaktadır.");
                 return View(sendMoneyForCustomerAccountProcessDto);

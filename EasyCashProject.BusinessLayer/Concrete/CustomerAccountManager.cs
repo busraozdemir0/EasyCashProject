@@ -33,6 +33,11 @@ namespace EasyCashProject.BusinessLayer.Concrete
             return _customerAccountDal.GetCustomerAccountsList(id);
         }
 
+        public List<CustomerAccount> TGetCustomerAccountsListByMyCurrency(int userId, string myCurrency)
+        {
+            return _customerAccountDal.GetCustomerAccountsListByMyCurrency(userId, myCurrency);
+        }
+
         public List<CustomerAccount> TGetList()
         {
             return _customerAccountDal.GetList();

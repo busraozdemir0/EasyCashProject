@@ -19,5 +19,14 @@ namespace EasyCashProject.DataAccessLayer.EntityFramework
             return values;
 
         }
+
+        public List<CustomerAccount> GetCustomerAccountsListByMyCurrency(int userId, string myCurrency)
+        {
+            using var context = new Context();
+            var userMyCurrencyAccounts = context.CustomerAccounts
+                .Where(x => x.AppUserID == userId && x.CustomerAccountCurrency == myCurrency).ToList();
+            return userMyCurrencyAccounts;
+
+        }
     }
 }
