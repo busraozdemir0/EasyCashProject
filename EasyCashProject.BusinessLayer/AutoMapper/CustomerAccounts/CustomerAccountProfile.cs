@@ -14,6 +14,7 @@ namespace EasyCashProject.BusinessLayer.AutoMapper.CustomerAccounts
         public CustomerAccountProfile()
         {
             CreateMap<CustomerAccount, CreateAccountDto>().ReverseMap();
+            CreateMap<CustomerAccount, ListCustomerAccountDto>().ReverseMap();
         }
     }
 }

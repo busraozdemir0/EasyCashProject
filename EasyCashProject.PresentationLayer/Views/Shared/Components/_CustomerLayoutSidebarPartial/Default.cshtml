@@ -46,9 +46,9 @@
                         <ul class="nav child_menu">
                             <li><a asp-controller="CustomerAccount" asp-action="Index">Tüm Hesaplarım</a></li>
                             <li><a asp-controller="CustomerAccount" asp-action="CreateAccount">Yeni Hesap Aç</a></li>
-                            <li><a href="widgets.html">Kredi Hesaplarım</a></li>
-                            <li><a href="invoice.html">Dolar Hesaplarım</a></li>
-                            <li><a href="inbox.html">Euro Hesaplarım</a></li>
+                            <li><a href="#">Kredi Hesaplarım</a></li>
+                            <li><a asp-controller="CustomerAccount" asp-action="GetCustomerUSDAccountsList">Dolar Hesaplarım</a></li>
+                            <li><a asp-controller="CustomerAccount" asp-action="GetCustomerEURAccountsList">Euro Hesaplarım</a></li>
                         </ul>
                     </li>
                     <li>
@@ -63,27 +63,27 @@
                         <a><i class="fa fa-table"></i> Ödemeler <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a asp-controller="ElectricBill" asp-action="Index">Fatura Ödeme</a></li>
-                            <li><a href="tables_dynamic.html">Eğitim Ödemeleri</a></li>
-                            <li><a href="tables_dynamic.html">Trafik Ödemeleri</a></li>
-                            <li><a href="tables_dynamic.html">Sınav Ödemeleri</a></li>
-                            <li><a href="tables_dynamic.html">Sigorta Ödemeleri</a></li>
-                            <li><a href="tables_dynamic.html">Diğer Ödemeler</a></li>
+                            <li><a href="#">Eğitim Ödemeleri</a></li>
+                            <li><a href="#">Trafik Ödemeleri</a></li>
+                            <li><a href="#">Sınav Ödemeleri</a></li>
+                            <li><a href="#">Sigorta Ödemeleri</a></li>
+                            <li><a href="#">Diğer Ödemeler</a></li>
                         </ul>
                     </li>
                     <li>
                         <a><i class="fa fa-clone"></i>Krediler <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a asp-controller="CreditCard" asp-action="CreditCartApplication">Kredi Kartı Başvurusu</a></li>
-                            <li><a href="fixed_sidebar.html">Kredi Hesaplarım</a></li>
-                            <li><a href="fixed_footer.html">Kredi Ödemeleri</a></li>
+                            <li><a href="#">Kredi Hesaplarım</a></li>
+                            <li><a href="#">Kredi Ödemeleri</a></li>
                         </ul>
                     </li>
                     <li>
                         <a><i class="fa fa-bar-chart-o"></i> Döviz ve Altın <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="chartjs.html">Döviz Kurları</a></li>
-                            <li><a href="chartjs2.html">Döviz İşlemleri</a></li>
-                            <li><a href="morisjs.html">Altın İşlemleri</a></li>
+                            <li><a href="#">Döviz Kurları</a></li>
+                            <li><a href="#">Döviz İşlemleri</a></li>
+                            <li><a href="#">Altın İşlemleri</a></li>
                         </ul>
                     </li>
                
@@ -97,7 +97,7 @@
                         <ul class="nav child_menu">
                             <li><a asp-controller="CreditCard" asp-action="Index">Kredi Kartlarım</a></li>
                             <li><a asp-controller="CustomerAccount" asp-action="Index">Banka Kartlarım</a></li>
-                            <li><a href="project_detail.html">Sanal Kartlarım</a></li>
+                            <li><a href="#">Sanal Kartlarım</a></li>
                         </ul>
                     </li>
                     <li>

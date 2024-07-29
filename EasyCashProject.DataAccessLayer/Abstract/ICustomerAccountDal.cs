@@ -11,5 +11,8 @@ namespace EasyCashProject.DataAccessLayer.Abstract
     {
         List<CustomerAccount> GetCustomerAccountsList(int id); // Sisteme login olan kullanicinin tum hesaplarini listeleyecek
         List<CustomerAccount> GetCustomerAccountsListByMyCurrency(int userId, string myCurrency); // Gelen my currency (TL, USD, EUR) degerine ve sisteme giris yapan kullanicinin id'sine gore hesaplari listeleme
+        List<CustomerAccount> GetCustomerUSDAccountsList(int userId); // Sisteme login olan kullanicinin dolar hesaplarini listeleyecek
+        List<CustomerAccount> GetCustomerEURAccountsList(int userId); // Sisteme login olan kullanicinin euro hesaplarini listeleyecek
+
     }
 }

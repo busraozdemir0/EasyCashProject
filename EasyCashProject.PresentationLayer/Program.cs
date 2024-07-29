@@ -29,6 +29,9 @@ builder.Services.AddScoped<ICustomerAccountService, CustomerAccountManager>();
 builder.Services.AddScoped<ICreditCardDal, EfCreditCardDal>();
 builder.Services.AddScoped<ICreditCardService, CreditCardManager>();
 
+builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

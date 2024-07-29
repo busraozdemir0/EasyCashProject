@@ -11,5 +11,7 @@ namespace EasyCashProject.BusinessLayer.Abstract
     {
         List<CustomerAccount> TGetCustomerAccountsList(int id); // Sisteme login olan kullanicinin tum hesaplarini listeleyecek
         List<CustomerAccount> TGetCustomerAccountsListByMyCurrency(int userId, string myCurrency); // Gelen my currency (TL, USD, EUR) degerine ve sisteme giris yapan kullanicinin id'sine gore hesaplari listeleme
+        List<CustomerAccount> TGetCustomerUSDAccountsList(int userId); // Sisteme login olan kullanicinin dolar hesaplarini listeleyecek
+        List<CustomerAccount> TGetCustomerEURAccountsList(int userId); // Sisteme login olan kullanicinin euro hesaplarini listeleyecek
     }
 }

@@ -55,5 +55,21 @@ namespace EasyCashProject.PresentationLayer.Controllers
             _customerAccountService.TInsert(customerAccount);
             return RedirectToAction("Index", "Dashboard");
         }
+
+        public async Task<IActionResult> GetCustomerUSDAccountsList()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var loginUserUSDAccountsList = _customerAccountService.TGetCustomerUSDAccountsList(user.Id); // Giris yapan kisinin dolar hesaplari listeleniyor
+            var mapList = _mapper.Map<List<ListCustomerAccountDto>>(loginUserUSDAccountsList);
+            return View(mapList);
+        }
+
+        public async Task<IActionResult> GetCustomerEURAccountsList()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var loginUserEURAccountsList = _customerAccountService.TGetCustomerEURAccountsList(user.Id); // Giris yapan kisinin euro hesaplari listeleniyor
+            var mapList = _mapper.Map<List<ListCustomerAccountDto>>(loginUserEURAccountsList);
+            return View(mapList);
+        }
     }
 }
