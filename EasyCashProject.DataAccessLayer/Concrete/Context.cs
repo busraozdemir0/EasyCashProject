@@ -20,6 +20,7 @@ namespace EasyCashProject.DataAccessLayer.Concrete
         public DbSet<ElectricBill> ElectricBills { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             // Para transferi icin iliskiler (CustomerAccount ile CustomerAccountProcess arasinda)

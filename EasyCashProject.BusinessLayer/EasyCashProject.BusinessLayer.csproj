@@ -30,10 +30,4 @@
     <ProjectReference Include="..\EasyCashProject.EntityLayer\EasyCashProject.EntityLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ValidationRules\AppRoleValidationRules\" />
-    <Folder Include="ValidationRules\CustomerAccountValidationRules\" />
-    <Folder Include="ValidationRules\CustomerAccountProcessValidationRules\" />
-  </ItemGroup>
-
 </Project>
