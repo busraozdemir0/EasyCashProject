@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace EasyCashProject.PresentationLayer.Controllers
@@ -101,6 +102,42 @@ namespace EasyCashProject.PresentationLayer.Controllers
             //#endregion
             return View();
         }
+
+        private static readonly string apiUrl = "https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_Yl1pz2FJWw0gV1HLpVR7kRbpruFsnzbyDXYuYYgw&base_currency=USD";
+
+        public async Task<IActionResult> Chart()
+        {
+            try
+            {
+                var exchangeRates = await GetExchangeRates();
+
+                if (exchangeRates != null)
+                {
+                    return Json(new { exchangeKey = exchangeRates.Keys.ToList(), exchangeValue = exchangeRates.Values.ToList() });
+                }
+                else
+                {
+                    return Json(new { error = "Döviz kurları alınamadı." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = $"Hata: {ex.Message}" });
+            }
+        }
+
+        private static async Task<Dictionary<string, decimal>> GetExchangeRates()
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetStringAsync(apiUrl);
+                var json = JObject.Parse(response);
+
+                var rates = json["data"].ToObject<Dictionary<string, decimal>>();
+                return rates;
+            }
+        }
+
 
 
         // *** Rapid API uzerinden doviz kurlarini cekme (Aylik istek siniri asildi!!)
