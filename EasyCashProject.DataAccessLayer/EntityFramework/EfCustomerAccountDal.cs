@@ -12,6 +12,17 @@ namespace EasyCashProject.DataAccessLayer.EntityFramework
 {
     public class EfCustomerAccountDal : GenericRepository<CustomerAccount>, ICustomerAccountDal
     {
+        // Kart bilgileri girilen hesabi dondurme
+        public CustomerAccount GetCustomerAccount(string cardName, string cardNumber, string expiryDate, int cvc)
+        {
+            using var context = new Context();
+            var result = context.CustomerAccounts.Where(x => x.CustomerAccountNumber == cardNumber &&
+                            x.ExpirationDate == expiryDate &&
+                            x.CVC == cvc &&
+                            x.AppUser.Name + " " + x.AppUser.Surname == cardName).FirstOrDefault();
+            return result;
+        }
+
         public List<CustomerAccount> GetCustomerAccountsList(int id)
         {
             using var context = new Context();

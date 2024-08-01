@@ -35,6 +35,9 @@ builder.Services.AddScoped<INotificationService, NotificationManager>();
 builder.Services.AddScoped<IContactDal, EfContactDal>();
 builder.Services.AddScoped<IContactService, ContactManager>();
 
+builder.Services.AddScoped<IElectricBillDal, EfElectricBillDal>();
+builder.Services.AddScoped<IElectricBillService, ElectricBillManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

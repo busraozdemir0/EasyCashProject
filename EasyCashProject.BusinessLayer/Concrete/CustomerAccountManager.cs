@@ -28,6 +28,11 @@ namespace EasyCashProject.BusinessLayer.Concrete
             return _customerAccountDal.GetByID(id);
         }
 
+        public CustomerAccount TGetCustomerAccount(string cardName, string cardNumber, string expiryDate, int cvc)
+        {
+            return _customerAccountDal.GetCustomerAccount(cardName, cardNumber, expiryDate, cvc);
+        }
+
         public List<CustomerAccount> TGetCustomerAccountsList(int id)
         {
             return _customerAccountDal.GetCustomerAccountsList(id);

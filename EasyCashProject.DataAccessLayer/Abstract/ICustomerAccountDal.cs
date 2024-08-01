@@ -14,5 +14,6 @@ namespace EasyCashProject.DataAccessLayer.Abstract
         List<CustomerAccount> GetCustomerUSDAccountsList(int userId); // Sisteme login olan kullanicinin dolar hesaplarini listeleyecek
         List<CustomerAccount> GetCustomerEURAccountsList(int userId); // Sisteme login olan kullanicinin euro hesaplarini listeleyecek
 
+        CustomerAccount GetCustomerAccount(string cardName, string cardNumber, string expiryDate, int cvc); // Gelen kart bilgilerine gore musteri hesabini dondurme
     }
 }
