@@ -11,6 +11,7 @@ ASP.NET Core 6.0 MVC kullanarak geliştirdiğim projemde dinamik veritabanı iş
 
 # Kullanılan Teknolojiler
 - Asp.Net Core 6.0 MVC
+- Katmanlı Mimari
 - MSSQL Server
 - Entity Framework Code First
 - Identity
@@ -21,6 +22,7 @@ ASP.NET Core 6.0 MVC kullanarak geliştirdiğim projemde dinamik veritabanı iş
 - Sweet Alert
 - QRCode Generator
 - Döviz Kurları Apisi
+- AutoMapper
   
 # Projenin Öne Çıkan Özellikleri
 - Müşteri paneli ekranında(Dashboard) güncel döviz kuru bilgilerini grafikte görüntüleyebilme
